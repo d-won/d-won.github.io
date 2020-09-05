@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Hometown for DS"
+title                    : "Hello Data Science!!"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Double D"
@@ -93,9 +93,9 @@ analytics:
 
 # Site Author
 author:
-  name             : "데이터분석 나그네"
+  name             : "D-Won"
   avatar           : "/assets/images/IMG_3207.jpg"
-  bio              : "끝없이 배우고자 합니다"
+  bio              : "배우면 기록합니다"
   location         : "South Korea"
   email            :
   links:
