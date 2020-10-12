@@ -6,6 +6,8 @@ main:
     url: /categories/ai/
   - title: "Math"
     url: /categories/math/
+  - title: "Econometrics"
+    url: /categories/econometrics/
   - title: "ETC"
     url: /categories/etc/
 
