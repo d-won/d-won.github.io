@@ -6,6 +6,7 @@ categories:
   - Econometrics
 tags:
   - Blog
+use_math: true
 last_modified_at: 2020-10-14
 ---
 
