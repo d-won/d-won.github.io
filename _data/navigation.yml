@@ -1,7 +1,5 @@
 # main links
 main:
-  - title: "About"
-    url: /about/
   - title: "Deep Learning"
     url: /categories/ai/
   - title: "Math"
@@ -20,3 +18,5 @@ main:
   #   url: /collection-archive/
   # - title: "Sitemap"
   #   url: /sitemap/
+  # - title: "About"
+  #  url: /about/
