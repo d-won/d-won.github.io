@@ -19,10 +19,7 @@ last_modified_at: 2020-11-01
 
 > ### What is Label Smoothing?
 
-$$
-y_{k}^{LS} = y_k(1-\alpha) + \alpha/K 
-$$
-
+* $y_{k}^{LS} = y_k(1-\alpha) + \alpha/K$
 * Szegedy 논문에서 소개 2016년
 * 기본적으로 One Hot encoding된 Hard Label을 Soft Label로 바꾸는 것(0과 1사이의 값)
 * $K$개의 클래스에 대해 Smoothing Parameter $\alpha$ 적용
