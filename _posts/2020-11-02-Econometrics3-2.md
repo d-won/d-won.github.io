@@ -18,7 +18,7 @@ last_modified_at: 2020-11-02
 	* "$X$가 한 단위 증가할 때 $Y$가 평균 약 7% 증가하는 것으로 추정된다"는 옳지 않다
 * 다시 한번 말하지만 조건부 등식을 고려해봤을 때, '평균' oo% 증가한다는 말은 엄밀하게 옳지 않다
 	* 수학적으로 보면,
-	* $E(logYIX = x+\Deltax) - E(logYIX=x) = \beta_1\Deltax$
+	* $E(logYIX = x+\Delta x) - E(logYIX=x) = \beta_1\Delta x$
 	* 결국, $log(Y)$의 평균과 $Y$의 평균에 로그를 씌운 것은 다르기 때문 
 	* $E(logY) \ne logE(Y)$
 
@@ -33,7 +33,7 @@ last_modified_at: 2020-11-02
 * $(y_i - \bar{y})^2 = (\hat(y_i)-\bar{y})^2 + \hat{u_i}^2+2(\hat{y_i}-\bar{y})\hat{u_i}$
 * 위 식에서 좌변의 합은 SST, 우변 첫째 항의 합은 SSE, 나머지 제곱합이 SSR이 되어야 한다.
 * 그런데, $\sum_{i=1}^{n}{(\hat{y_i}-\bar{y})\hat{u_i}}=\sum_{i=1}^{n}{\hat{y_i}\hat{u_i}}-\sum_{i=1}^{n}{\bar{y}\hat{u_i}}$이고
-* 직교방정식에 의해 $\sum_{i=1}^{n}{\hat{u_i}=0$이고, \sum_{i=1}^{n}{\hat{y_i}\hat{u_i}}=0$이므로, 직교방정식이 성립했다면 위의 식은 성립한다.
+* 직교방정식에 의해 $\sum_{i=1}^{n}{\hat{u_i}}=0$이고, $\sum_{i=1}^{n}{\hat{y_i}\hat{u_i}}=0$이므로, 직교방정식이 성립했다면 위의 식은 성립한다.
 
 > ### 3.9 R제곱
 
