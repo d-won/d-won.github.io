@@ -9,6 +9,7 @@ tags:
 use_math: true
 last_modified_at: 2020-11-02
 ---
+
 > ### 3.7 종속변수가 로그일 때 계수 추정값의 해석
 
 * 예: $\hat{log(Y)} = 0.245 + 0.07X$
