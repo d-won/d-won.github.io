@@ -44,8 +44,8 @@ last_modified_at: 2020-11-06
 * $R^2 = \frac{SSE}{SST} = 1-\frac{SSR}{SST}$
 
 * 결정계수는 종속변수 값과 이들의 맞춘값 사이의 표본 상관계수를 제곱한 것과도 동일하다
-* $\widehat{cor(y, \hat{y})} = \frac{\sum_{i=1}^{n}{(y_i-\bar{y})(\hat{y_i}-\bar{y})}}{\sqrt{\sum_{i=1}^{n}{(y_i-\bar{y})^2}}\times \sum_{i=1}^{n}{(\hat{y_i}-\bar{y})^2}}$
-* $R^2=\frac{SSE}{SST}=\frac{\sum_{i=1}^{n}{(\hat{y_i}-\bar{y})^2}}{\sum_{i=1}^{n}{(y_i-\bar{y})^2}}=\frac{[\sum_{i=1}^{n}{(\hat{y_i}-\bar{y})^2}]^2}{\sum_{i=1}^{n}{(y_i-\bar{y})^2}}\times \sum_{i=1}^{n}{(\hat{y_i}-\bar{y})^2}}$
+* $\widehat{cor(y, \hat{y})} = \frac{\sum_{i=1}^{n}{(y_i-\bar{y})(\hat{y_i}-\bar{y})}}{\sqrt{\sum_{i=1}^{n}{(y_i-\bar{y})^2}\times \sum_{i=1}^{n}{(\hat{y_i}-\bar{y})^2}}}$
+* $R^2=\frac{SSE}{SST}=\frac{\sum_{i=1}^{n}{(\hat{y_i}-\bar{y})^2}}{\sum_{i=1}^{n}{(y_i-\bar{y})^2}}=\frac{[\sum_{i=1}^{n}{(\hat{y_i}-\bar{y})^2}]^2}{\sum_{i=1}^{n}{(y_i-\bar{y})^2}\times \sum_{i=1}^{n}{(\hat{y_i}-\bar{y})^2}}$
 * 그런데,$\hat{y_i} = y_i-\hat{u_i}$이고, $\hat{y_i}-\bar{y}=(y_i-\bar{y})-\hat{u_i}$이므로,
 * $\sum_{i=1}^{n}{(\hat{y_i}-\bar{y})^2} = \sum_{i=1}^{n}{(\hat{y_i}-\bar{y})[(y_i-\bar{y})-\hat{u_i}]} = \sum_{i=1}^{n}{(\hat{y_i}-\bar{y})(y_i-\bar{y})}$
 * 위에서 직교방정식에 의해 $\sum_{i=1}^{n}{(\hat{y_i}-\bar{y})\hat{u_i}}=0$임
