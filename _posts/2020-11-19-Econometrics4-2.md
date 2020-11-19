@@ -83,9 +83,9 @@ last_modified_at: 2020-11-16
 * $\hat{\beta_1} = \beta_1 + \frac{\sum_{i=1}^{n}{(x_i-\bar{x})u_i}}{\sum_{i=1}^{n}{(x_i-\bar{x})^2}}$ (4.1)
 
 * 위 식을 만들기 위해 최소제곱 추정량부터 시작해보자.
-* $\hat{\beta_1} = \frac{\sum_{i=1}^{n}{(x_i-\bar{x})y_i}{\sum_{i=1}^{n}{(x_i-\bar{x})^2}}$ 
+* $\hat{\beta_1} = \frac{\sum_{i=1}^{n}{(x_i-\bar{x})y_i}}{\sum_{i=1}^{n}{(x_i-\bar{x})^2}}$ 
 	* 위 식에서 $y_i = \beta_0+\beta_1x_i+u_i$를 대입하면,
-	* $\hat{\beta_1} = \frac{\sum_{i=1}^{n}{(x_i-\bar{x})(\beta_0+\beta_1x_i+u_i)}{\sum_{i=1}^{n}(x_i-\bar{x})^2}$가 된다. (4.2)
+	* $\hat{\beta_1} = \frac{\sum_{i=1}^{n}{(x_i-\bar{x})(\beta_0+\beta_1x_i+u_i)}}{\sum_{i=1}^{n}{(x_i-\bar{x})^2}}$가 된다. (4.2)
 		* 그런데, $\sum_{i=1}^{n}{(x_i-\bar{x})\beta_0} = \beta_0 \times \sum_{i=1}^{n}{(x_i-\bar{x})}=\beta_0 \times 0 = 0$
 		* 또한, $\sum_{i=1}^{n}{(x_i-\bar{x})x_i} = \sum_{i=1}^{n}{(x_i-\bar{x})x_i} - \sum_{i=1}^{n}{(x_i-\bar{x})\bar{x}} = \sum_{i=1}^{n}{(x_i-\bar{x})^2}$ 이므로
 		* 4.2 식에서 $\beta_0$ 항은 없어지고, $\beta_1$ 항은 앞으로 빠지게 되어 $u_i$항만 남아서 4.1 식이 나온다
