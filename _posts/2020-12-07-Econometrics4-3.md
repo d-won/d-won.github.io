@@ -89,4 +89,4 @@ last_modified_at: 2020-12-07
 
 * 정규분포의 평균이 0이고 분산이 1이면 이를 표준정규분포라고 한다. 
 * 무슨 분포이든 평균을 빼고, 표준편차로 나누면, 평균이 0이고 분산이 1이 될 수 있다. 
-* 그러므로 $\frac{\hat{\beta_1}-\beta_1}{\sigma / \sqrt{SST_X} \sim N(0,1)}$ 이 된다.
+* 그러므로 $\frac{\hat{\beta_1}-\beta_1}{\sigma / \sqrt{SST_X}} \sim N(0,1)$ 이 된다.
