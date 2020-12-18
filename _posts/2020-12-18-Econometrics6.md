@@ -1,13 +1,13 @@
 ---
-title:  "계량경제학 강의 5-1 (한치록)"
-excerpt: "추정값과 참값의 관계"
+title:  "계량경제학 강의 6 (한치록)"
+excerpt: "최소제곱을 이용한 가설검정"
 
 categories:
   - Econometrics
 tags:
   - Blog
 use_math: true
-last_modified_at: 2020-12-14
+last_modified_at: 2020-12-18
 ---
 
 ## 6장 최소제곱을 이용한 가설 검정
@@ -30,6 +30,7 @@ last_modified_at: 2020-12-14
 	* $\beta_1$은 우리가 모르는 기울기의 참값이며,
 	* 분모의 표준편차는 우리가 모르는 $\sigma^2$와 설명변수의 표본값인 $x_1, \cdots, x_n$으로 구성되어있다.
 * 만약 여기서, $\beta_1 = 1$이라고 귀무가설을 세운다면,
+
 > $\frac{\hat{\beta_1} - 1}{sd(\hat{\beta_1})} \sim N(0,1)$
 
 * 위 식을 세운다고 해도 여전히 우리가 모르는 $\sigma$가 포함돼있다. 

@@ -1,6 +1,6 @@
 ---
-title:  "계량경제학 강의 5-1 (한치록)"
-excerpt: "추정값과 참값의 관계"
+title:  "계량경제학 강의 5 (한치록)"
+excerpt: "통계적 검정의 기초"
 
 categories:
   - Econometrics
