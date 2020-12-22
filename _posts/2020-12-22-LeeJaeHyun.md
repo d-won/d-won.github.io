@@ -1,13 +1,13 @@
 ---
-title:  "계량경제학 수학 복습 (한치록)"
-excerpt: "각종 수학 정리 복습"
+title:  "이제현님 커리어 강의 요약"
+excerpt: "이제현님 커리어 관련 강의"
 
 categories:
-  - Econometrics
+  - etc
 tags:
   - Blog
 use_math: true
-last_modified_at: 2020-12-21
+last_modified_at: 2020-12-22
 ---
 > 이제현님께서 강의해주신 내용을 요약
 
