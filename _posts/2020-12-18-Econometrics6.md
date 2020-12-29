@@ -64,7 +64,7 @@ last_modified_at: 2020-12-29
 * 일단, 주어진 가정 하에 $(\hat{\beta_1} - \beta_1)/sd(\hat{\beta_1})$는 정규분포를 따르고, (위 t 분포 정의에서 $Z$)
 * $(n-x) \times [se(\hat{\beta_1})/sd(\hat{\beta_1})]^2=SSR/\sigma^2$인 자유도 $n-2$인 카이제곱분포를 따르기 때문에
 
-> \frac{\hat{\beta_1} - \beta_1}{se(\hat{\beta_1})} = \frac{(\hat{\beta_1} - \beta_1)/sd(\hat{\beta_1})}{\sqrt{[(n-2)se(\hat{\beta_1})^2/sd(\hat{\beta_1})^2]/(n-2)}}
+> $\frac{\hat{\beta_1} - \beta_1}{se(\hat{\beta_1})} = \frac{(\hat{\beta_1} - \beta_1)/sd(\hat{\beta_1})}{\sqrt{[(n-2)se(\hat{\beta_1})^2/sd(\hat{\beta_1})^2]/(n-2)}}$
 
 * 위 식에서 $(n-x) \times [se(\hat{\beta_1})/sd(\hat{\beta_1})]^2$가 $X$고, $(n-2)$가 $d$이므로 t 분포를 따름
 
