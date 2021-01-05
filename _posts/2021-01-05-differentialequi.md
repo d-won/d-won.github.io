@@ -1,6 +1,6 @@
 ---
-title:  "Analysis(1)"
-excerpt: "해석학-집합론"
+title:  "미분방정식-멜서스 인구로"
+excerpt: "미분방정식 기초"
 
 categories:
   - Math
