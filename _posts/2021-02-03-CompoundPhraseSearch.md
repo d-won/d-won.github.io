@@ -1,4 +1,3 @@
-```
 ---
 title:  "조합 구절 검색"
 excerpt: "힙알마(검색)"
@@ -10,7 +9,6 @@ tags:
 use_math: true
 last_modified_at: 2021-02-03
 ---
-```
 
 
 
