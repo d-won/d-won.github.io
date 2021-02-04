@@ -11,7 +11,6 @@ last_modified_at: 2021-02-03
 ---
 
 
-
 ## 4.6 **Search Methods for Merchandising**
 
 - relatively generic search methods는 eCommerce에서는 아래와 같은 이유로 잘 통하지 않음
@@ -144,3 +143,6 @@ Recall은 단일 검색/ 복수 검색 결과의 품질을 평가하는 데 활�
 ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8d469ed7-de78-46b5-a465-9bf0173c9e18/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8d469ed7-de78-46b5-a465-9bf0173c9e18/Untitled.png)
 
 우리는 위와 같은 데이터를 기존 검색 데이터를 가져오고, 전문가 판단에 의해 grade를 메길 수 있다. 그리고, 다른 '지도학습' 문제들과 마찬가지로 feature engineering 과정이 포함된다.
+
+
+https://www.notion.so/4-6-4-8-7810bee6eea3435384eba24b069d2227
