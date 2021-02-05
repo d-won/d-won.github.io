@@ -143,6 +143,62 @@ Recall은 단일 검색/ 복수 검색 결과의 품질을 평가하는 데 활�
 ![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8d469ed7-de78-46b5-a465-9bf0173c9e18/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8d469ed7-de78-46b5-a465-9bf0173c9e18/Untitled.png)
 
 우리는 위와 같은 데이터를 기존 검색 데이터를 가져오고, 전문가 판단에 의해 grade를 메길 수 있다. 그리고, 다른 '지도학습' 문제들과 마찬가지로 feature engineering 과정이 포함된다.
+우리는 위와 같은 데이터를 기존 검색 데이터를 가져오고, 전문가 판단에 의해 grade를 메길 수 있다. 그리고, 다른 '지도학습' 문제들과 마찬가지로 feature engineering 과정이 포함된다.
 
+Document Features 
+
+- 기본적인 document 통계치
+- 제품 타입, 가격 카테고리
+
+Query Features
+
+- 기본적인 query 통계치
+- query 빈도, CTR 등
+
+Document-Query Features
+
+- Document와 Query 모두를 기반으로 하는 feature
+
+다음으로 해야 할 것은 Loss Function에 대한 정의
+
+1. Pointwise : 각각의 document에 대해서 독립적으로 예측을 진행한 후, 산출된 loss를 모두 sum하여 전체 loss를 구하는 방식. But, 해당 방법은 rank를 고려하려는 우리의 목적과 다르게 질적, 정량적 예측치만을 산출
+2. Pairwise: pair로 document를 선정하여 해당 pair끼리 순서가 반전되는 것을 최소화하는 방식. ranking을 구한다는 본래 목적에 적합하므로 pointwise보다 성능이 좋음
+3. Listwise: 전체 document list를 넣고, 최적의 rank를 찾는 것. 
+
+참고사이트
+
+1. [https://yamalab.tistory.com/119](https://yamalab.tistory.com/119)
+2. [https://renuevo.github.io/data-science/learning-to-rank/](https://renuevo.github.io/data-science/learning-to-rank/)
+3. [https://checkwhoiam.tistory.com/24](https://checkwhoiam.tistory.com/24)
+
+이제 학습 데이터와, loss function을 정했다면 model을 정할 차례인데
+
+야후와 마이크로소프트의 경험에 따르면, decision tree, neural net 그리고 앙상블 모델을 많이 활용
+
+우리는 McRank 알고리즘에 대해 살펴볼 예정 
+
+- McRank는 GBDT model을 활용하고 k개의 카테고리에 대한 classfication 진행
+- GBDT이므로 loss function smoothing 진행 (label smoothing?)
+
+### 4.7.2 Learning to Rank from Implicit Feedback
+
+전문가가 grade를 부여하는 것은 매우 많은 자원을 투입해야 하는 일이므로 해당 문제를 효율적으로 해결하기 위해서는 시스템이 유저와 상호작용을 기반으로 한 결과를 활용하여 자동으로 relevance grade를 부여하는 것이 필요 (예: 아무도 클릭하지 않은 결과는 당연히 검색결과 품질이 안 좋은 것)
+
+우리가 살펴볼 모델에서는 2개의 relevance feedback rule을 고려
+
+1. 만약 유저가 검색 결과 중 특정 document를 클릭한다면, 해당 document는 다른 document에 비해 relevance가 높음
+2. eye tracking 연구를 통한 실증적 근거를 기반으로 보았을 때, 유저는 일반적으로 검색 결과 중에서 최소한 최상단의 2개까지는 보고 행동한다. 그러므로, 유저가 최상단의 첫번째 document를 클릭했다면, 두 번째 보다 적합도가 높다는 것이다.
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0951f85c-4dbd-4677-aa27-843c84657e2e/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0951f85c-4dbd-4677-aa27-843c84657e2e/Untitled.png)
+
+유저는 보통 1번만 검색하는 것이 아니라, 2번 3번 검색을 하는 경우가 많다. 
+
+유저가 유사한 query를 2번 이상 검색했다고 하자. 
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ab0b5f45-caa7-4d05-abec-a0c0def58260/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ab0b5f45-caa7-4d05-abec-a0c0def58260/Untitled.png)
+
+위와 같은 부등호는 Rule 1,2를 2번째 query까지 확장시킨 결과이며, 우리는 위와 같은 규칙을 통하여, 전문가의 판단 없이도 학습 데이터 셋에 Rank 작업을 진행할 수 있다. 해당 Rank 작업은 TF IDF모델을 통해 나온 결과도 함께 고려하여 반영할 수 잇다.
 
 https://www.notion.so/4-6-4-8-7810bee6eea3435384eba24b069d2227
+
+
