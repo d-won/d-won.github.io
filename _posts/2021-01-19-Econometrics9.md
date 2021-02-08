@@ -7,7 +7,7 @@ categories:
 tags:
   - Blog
 use_math: true
-last_modified_at: 2021-02-01
+last_modified_at: 2021-02-08
 
 ---
 
@@ -191,4 +191,32 @@ last_modified_at: 2021-02-01
 
 ## 9.10 예측
 
+아래와 같은 순서로 진행되는 예시를 보자
 
+1. $Y = \beta_0 + \beta_1X_1 + \beta_2log(X_2)+\beta_3X_3+u$
+2. $y^0 = \beta_0 + \beta_1 \cdot 3 + \beta_2log(20) + \beta_3 \cdot(-1) + u^0$
+3. $\theta = \beta_0 + \beta_1 \cdot 3 + \beta_2log(20) + \beta_3 \cdot(-1)$ , 여기서 $\theta$는 $X_1=3, X_2 =20, X_3=-1$인 모든 개체들의 평균 $Y$라는 것을 기억하라
+4. $\hat{y^0} = \hat{\theta} = \hat{\beta_0} + \hat{\beta_1} \cdot 3 + \hat{\beta_2l}og(20) + \hat{\beta_3} \cdot(-1)$
+
+이 위에서 모수 추정방식대로
+
+1. $\beta_0 = \theta -3\beta_1-log(20)\beta_2 + \beta_3$
+2. $Y = \theta + \beta_1(X_1 - 3)+\beta_2[log(X_2) - log(20)] + \beta_3(X_3+1)+u$
+
+이제 여기에서, 
+
+1. $y^0 = \theta + u^0$
+2. $\theta + u^0 -\hat{\theta} = y^0 - \hat{y^0}$
+3. $var(\theta + u^0 -\theta) = var(u^0) + var(\hat{\theta}) -2cov(u^0, \hat{\theta})= \sigma^2+var(\hat{\theta})$ , 지금까지 식이 모두 정규분포를 따르므로
+4. $\frac{y^0- \hat{y^0}}{\sqrt{\sigma^2+var(\hat{\theta})}}\sim N(0, 1) = \frac{y^0- \hat{y^0}}{se(y^0 - \hat{y^0})} = \frac{y^0- \hat{y^0}}{[s^2+se(\hat{\theta})^2]^{1/2}} \sim t_{n-k-1} $
+
+
+결국, $\theta$의 신뢰구간과 $y^0$의 신뢰구간은 크게 다를 수 있다. 
+
+(사실 $\theta$는 계수들의 선형결합의 신뢰구간이며, 특정값일 때 평균 y)
+
+$y^0$의 예측구간은 $\theta$뿐만 아니라, $u^0$에 의해서도 영향을 받는다. 
+
+그 중 $u^0$은 특정 개체에 고유한 것이며, 아무리 큰 표본이 있다라도 $u^0$에 대한 정보는 얻을 수 없다. 
+
+그래서 $\theta$보다 $y^0$의 신뢰구간이 더 커질 수밖에 없다.
