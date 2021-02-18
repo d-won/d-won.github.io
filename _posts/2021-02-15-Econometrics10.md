@@ -7,7 +7,7 @@ categories:
 tags:
   - Blog
 use_math: true
-last_modified_at: 2021-02-17
+last_modified_at: 2021-02-18
 
 
 ---
@@ -65,9 +65,72 @@ last_modified_at: 2021-02-17
   * 위 값은 F 통계량이며
   * F 통계량은 일정한 가정하 F 분포를 갖는다
     * F 분포는 서로 독립인 두 카이제곱 변수들의 비율이 갖는 분포이다. 
-    * $X_1 \sim \chi^2_{df1}$이고 $X_2 \sim X^2_{df2}$이며 서로 독립이면 $(X_1/df_1)/(X_2/df_2)$는 자유도가 $(df_1, df_2)$인 F 분포를 따른다
+    * $ X_1 \sim \chi^2_{df1} $이고 $X_2 \sim X^2_{df2}$이며 서로 독립이면 $(X_1/df_1)/(X_2/df_2)$는 자유도가 $(df_1, df_2)$인 F 분포를 따른다
     * 카이제곱 변수들이 확률 1로 양의 실수값을 가지므로 F 분포를 갖는 변수들도 확률 1로 양의 실수값을 갖는다.
 * 하나의 제약으로 이루어진 귀무가설에 대해 대립가설이 '≠' 형태로 되어있으면, t 검정/F 검정 모두 가능하다
   * 그래서, 두 방법은 전적으로 동일한 결과를 낳는다.
   * t 통계량을 제곱하면 그 값은 F 통계량과 정확히 일치하기 때문이다. 
   * t 분포인 어떤 확률변수를 제곱하면 그 분포는 F 분포가 된다. 
+
+## 10.3 여러 선형제약으로 이루어진 가설 검정
+
+* $\beta_1 = \beta_2 = 0$처럼 여러 제약이 있다고 가정하자. 
+* 대립가설은 $\beta_1$과 $\beta_2$ 중 적어도 하나는 0이 아니라는 것이다. 
+  * 이를 위해 각각의 t검정을 하고 조합하여 결론을 낼릴 수 있겠다고 생각할 수 있지만
+  * 상호작용을 고려하지 않으므로 좋지 않다
+  * F 검정을 그래서 배운 것
+* $F = \frac{(SSR_R - SSR_U)/m}{SSR_U/(n-k-1)}$
+  * 위 가정에서 $m=2$
+* 다만, 해당 F검정을 하기 위해서는 library 활용 필요 (ex: car에서 lht)
+
+
+
+#### 코드 진행
+
+~~~R
+### jc(2년제 대학) univ (4년제 대학) 영향 동일하다는 제약, F 검정
+
+Twoyear <- read.csv('twoyear.csv')
+n <- nrow(Twoyear)
+m <- 1
+u1 <- lm(lwage ~ jc + univ + exper, data = Twoyear)$resid
+u0 <- lm(lwage ~ I(jc+univ) + exper, data = Twoyear)$resid
+ssr1 <- sum(u1^2)
+ssr0 <- sum(u0^2)
+Fstat <- ((ssr0 - ssr1)/m)/(ssr1/(n-4))
+Fstat
+pval <- 1-pf(Fstat, m, n-4)
+pval
+
+[1] 0.1422441
+
+~~~
+
+
+
+~~~R
+### jc, univ 영향과 두 학력과 exper 영향이 모두 동일하다는 가정 (b1 = b2 = b3)
+
+libarary(car)
+
+ols1 <- lm(lwage ~ jc + univ + exper, data=Twoyear)
+lht(ols1, c("jc=univ", "univ=exper"))
+
+Linear hypothesis test
+
+Hypothesis:
+jc - univ = 0
+univ - exper = 0
+
+Model 1: restricted model
+Model 2: lwage ~ jc + univ + exper
+
+  Res.Df    RSS Df Sum of Sq      F    Pr(>F)    
+1   6761 1437.0                                  
+2   6759 1250.5  2    186.49 503.97 < 2.2e-16 ***
+---
+Signif. codes:  
+0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+~~~
+
+
