@@ -7,7 +7,7 @@ categories:
 tags:
   - Blog
 use_math: true
-last_modified_at: 2021-02-18
+last_modified_at: 2021-02-19
 
 
 ---
@@ -131,6 +131,65 @@ Model 2: lwage ~ jc + univ + exper
 ---
 Signif. codes:  
 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+~~~
+
+## 10.4 함수 형태 설정 오류의 검정
+
+
+
+* 선형 모형으로 y를 분석하는 것이 옳은 것일까?
+  * 단순회귀라면, 그림을 그려보면 바로 알 수 있지만
+  * 다중회귀라면, 그렇게 하기가 어렵다
+* 다중회귀에서 함수 형태가 잘못 설정되지 않았는 지 판단하는 방법이 'RESET' (regression specification error test)다
+  * RESET은 우변에 맞춘값의 제곱, 세제곱, 네제곱 등을 추가해 이 추가된 선변수들의 유의성을 F 검정으로 검정한다.
+  * 단순회귀에서는 $Y = \beta_0 + \beta_1X_1$의 우변에 $X_1^2, X_1^3$ 등을 추가하는 것이라면,
+  * 다중회귀에서는 설명변수가 여럿이라서 설명변수들의 선형결합인 맞춘값의 제곱, 세제곱을 포함시킨다.
+  * 보통, 세제곱까지 포함시킨다.
+
+
+
+* 아래 코드는 reset test를 R에서 진행시켜본 것으로서
+  * $Y = \beta_0+\beta_1X_1 + \beta_2log(X_2) + u$ 임에도 불구하고
+  * 일부러, $Y=\beta_0 + \beta_1X_1 + \beta_2X2 + u$로 회귀할 때 결과를 보려는 것이다. 
+
+~~~R
+### 잘못된 모델로 reset test 진행
+
+library(lmtest)
+set.seed(1)
+n <- 100
+x1 <- rnorm(n)
+x2 <- exp(rnorm(n))
+
+y <- 1+x1-log(x2)+rnorm(n)
+ols <- lm(y~x1+x2)
+resettest(ols, power = 2:3)
+
+	RESET test
+
+data:  ols
+RESET = 5.8562, df1 = 2, df2 = 95, p-value = 0.003997
+#귀무가설 기각 (잘못된 모형)
+
+### 정상 모델로 reset test 진행
+resettest(y~x1+log(x2), power=2:3)
+
+data:  y ~ x1 + log(x2)
+RESET = 1.7036, df1 = 2, df2 = 95, p-value = 0.1875
+#귀무가설 채택 (정상 모형)
+
+### 실제로 해당 맞춘값들의 제곱, 세제곱에 대해 회귀 결과를 보면
+aux <- lm(y~x1+x2+I(yhat^2)+I(yhat^3))
+coeftest(aux)
+
+             Estimate Std. Error t value  Pr(>|t|)    
+(Intercept)  0.972493   0.274012  3.5491  0.000603 ***
+x1           0.402367   0.242460  1.6595  0.100308    
+x2          -0.450605   0.077647 -5.8033 8.543e-08 ***
+I(yhat^2)    0.471975   0.158705  2.9739  0.003727 ** 
+I(yhat^3)   -0.080321   0.044167 -1.8186  0.072130 .  
+
+# 모두 유의하여 잘못된 모형임을 확인 가능
 ~~~
 
 
