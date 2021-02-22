@@ -7,7 +7,7 @@ categories:
 tags:
   - Blog
 use_math: true
-last_modified_at: 2021-02-19
+last_modified_at: 2021-02-22
 
 
 ---
@@ -190,6 +190,44 @@ I(yhat^2)    0.471975   0.158705  2.9739  0.003727 **
 I(yhat^3)   -0.080321   0.044167 -1.8186  0.072130 .  
 
 # 모두 유의하여 잘못된 모형임을 확인 가능
+~~~
+
+## 10.5 라그랑지 승수 검정
+
+
+
+* 앞서 본, F검정과 t검정은 Wald 검정의 일종이고, 제약없는 추정값이 제식을 얼마만큼 잘 충족시키는지 보는 것이다.
+* 반명, 제약하에서 구한 추정값이 제약 없는 모형의 추정 조건을 얼마만큼 잘 충족시키는 지 살펴보는 '라그랑지 승수 검정 (or 스코어 검정)'도 있다.
+
+
+
+~~~R
+> n <- nrow(Twoyear)
+> n
+[1] 6763
+> 
+> # 제약식 하 잔차를 구하고
+> ols0 <- lm(lwage ~ I(jc+univ+exper), data=Twoyear)
+> 
+> # 제약식 하 잔차를 변수로 만들고
+> Twoyear$resid <- ols0$resid
+> 
+> # 잔차 변수를 나머지 독립변수들에 대해 회귀하고
+> ols1 <- lm(resid ~ jc +univ+exper, data=Twoyear)
+> R2aux <- summary(ols1)$r.sq
+> R2aux
+[1] 0.1297736
+> 
+> # LM 통계량 구하고 (표본 수 곱하기 R^2)
+> lmstat <- n * summary(ols1)$r.sq
+> lmstat
+[1] 877.6588
+> 
+> # 해당 통계량을 카이분포 하에서 통계값 확인
+> qchisq(.95, 2)
+[1] 5.991465
+> 1-pchisq(lmstat,2)
+[1] 0
 ~~~
 
 
